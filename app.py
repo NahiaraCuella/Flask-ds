@@ -1,11 +1,17 @@
-from flask import Flask
 import sqlite3
+from flask import Flask, url_for
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return f"""<p>Hello, World!</p>
+    <a href="{ url_for('nombre') }">Una ruta sencilla</a><br>
+    <a href="{url_for('apellido')}">Una ruta sencilla</a><br>
+    <a href="{url_for('saludar',nombre = "Angeles")}">Una ruta con argumento</a><br>
+    <a href="{url_for('edad', numero = "18")}">Una ruta con argumento</a>   
+"""
+
 
 @app.route("/nombre")
 def nombre():
